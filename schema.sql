@@ -1,24 +1,26 @@
 --drop table if exists
-DROP TABLE IF EXISTS Healthcare_P;
+DROP TABLE IF EXISTS healthcare_P;
 
 -- Create tables
-CREATE TABLE Healthcare_P
+CREATE TABLE healthcare_P
 (
     HCP_ID Serial Primary Key,
-    US_State TEXT NOT NULL,
+    Location TEXT NOT NULL,
     Total_hospital_beds INT NOT NULL,
-    Hospital_beds_per_population VARCHAR NOT NULL,
     ICU_beds INT NOT NULL,
-    ICU_beds_per_population VARCHAR NOT NULL,
     Total_CHCs INT NOT NULL,
     CHC_service_delivery_sites INT NOT NULL
 );
 
 select *
-from Healthcare_P
+from healthcare_P
 
 
-
+-- "Location":"Location",
+-- "Total Hospital Beds": "Total_hospital_beds", 
+-- "ICU Beds": "ICU_beds", 
+-- "Total CHCs": "Total_CHCs", 
+-- "CHC Service Delivery Sites": "CHC_service_delivery_sites"
 
 
 --drop table if exists
@@ -27,14 +29,13 @@ DROP TABLE IF EXISTS us_covid;
 -- Create tables 
 CREATE TABLE us_covid
 (
-    index Serial
-    Primary Key,
-    state TEXT NOT NULL,
-    county_fips INT NOT NULL,
-    fips INT NOT NULL,
-    cases INT NOT NULL,
-    deaths INT NOT NULL,
-    Type VARCHAR NOT NULL
+    --date VARCHAR NOT NULL,
+    state TEXT NULL,
+    county_fips INT NULL,
+    fips INT NULL,
+    cases INT NULL,
+    deaths INT NULL,
+    disease VARCHAR NULL
 );
 
     select *
@@ -43,33 +44,59 @@ CREATE TABLE us_covid
 
 
 
-    --drop table if exists 
-    DROP TABLE IF EXISTS national_history;
+    
+    
+--drop table if exists 
+DROP TABLE IF EXISTS all_states_history
 
-    -- Create tables 
-    CREATE TABLE national_history
-    (
-        date VARCHAR NOT NULL,
-        death INT NOT NULL,
-        deathIncrease INT NOT NULL,
-        inIcuCumulative INT NOT NULL,
-        inIcuCurrently INT NOT NULL,
-        hospitalizedIncrease INT NOT NULL,
-        hospitalizedCurrently INT NOT NULL,
-        hospitalizedCumulative INT NOT NULL,
-        negative INT NOT NULL,
-        negativeIncrease INT NOT NULL,
-        onVentilatorCumulative INT NOT NULL,
-        onVentilatorCurrently INT NOT NULL,
-        posNeg INT NOT NULL,
-        positive INT NOT NULL,
-        positiveIncrease INT NOT NULL,
-        recovered INT NOT NULL,
-        states INT NOT NULL,
-        totalTestResults INT NOT NULL,
-        totalTestResultsIncrease INT NOT NULL,
-        _Type VARCHAR NOT NULL
-    );
+-- Create tables 
+CREATE TABLE all_states_history
+(    
+    date VARCHAR NOT NULL,                          
+    state VARCHAR NOT NULL,                           
+    dataQualityGrade VARCHAR NOT NULL,                    
+    death FLOAT NOT NULL,                           
+    deathConfirmed FLOAT NOT NULL,                   
+    deathIncrease INT NOT NULL,
+    deathProbable FLOAT NOT NULL,   
+    hospitalized FLOAT NOT NULL,                      
+    hospitalizedCumulative FLOAT NOT NULL,             
+    hospitalizedCurrently FLOAT NOT NULL,             
+    hospitalizedIncrease INT NOT NULL,                 
+    inIcuCumulative FLOAT NOT NULL,                   
+    inIcuCurrently FLOAT NOT NULL,                  
+    negative FLOAT NOT NULL,                        
+    negativeIncrease INT NOT NULL,                  
+    negativeTestsAntibody FLOAT NOT NULL,              
+    negativeTestsPeopleAntibody FLOAT NOT NULL,        
+    negativeTestsViral FLOAT NOT NULL,                
+    onVentilatorCumulative FLOAT NOT NULL,            
+    onVentilatorCurrently FLOAT NOT NULL,              
+    pending FLOAT NOT NULL,                           
+    positive FLOAT NOT NULL,                         
+    positiveCasesViral FLOAT NOT NULL,                 
+    positiveIncrease INT NOT NULL,                   
+    positiveScore INT NOT NULL,                   
+    positiveTestsAntibody FLOAT NOT NULL,              
+    positiveTestsAntigen FLOAT NOT NULL,             
+    positiveTestsPeopleAntibody FLOAT NOT NULL,        
+    positiveTestsPeopleAntigen FLOAT NOT NULL,       
+    positiveTestsViral FLOAT NOT NULL,                 
+    recovered FLOAT NOT NULL,                       
+    totalTestEncountersViral FLOAT NOT NULL,          
+    totalTestEncountersViralIncrease INT NOT NULL,    
+    totalTestResults FLOAT NOT NULL,                   
+    totalTestResultsIncrease INT NOT NULL,             
+    totalTestsAntibody FLOAT NOT NULL,               
+    totalTestsAntigen FLOAT NOT NULL,               
+    totalTestsPeopleAntibody FLOAT NOT NULL,           
+    totalTestsPeopleAntigen FLOAT NOT NULL,            
+    totalTestsPeopleViral FLOAT NOT NULL,            
+    totalTestsPeopleViralIncrease INT NOT NULL,       
+    totalTestsViral FLOAT NOT NULL,                
+    totalTestsViralIncrease INT NOT NULL,         
+    disease VARCHAR NOT NULL                      
+ );
 
-    select *
-    from national_history
+select *
+    from all_states_history
